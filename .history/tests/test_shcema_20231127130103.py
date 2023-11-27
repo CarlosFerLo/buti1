@@ -49,7 +49,7 @@ class TestSchema (unittest.TestCase) :
         
         self.assertDictEqual(count, {Palo.OROS: 1, Palo.BASTOS: 2, Palo.COPAS: 1, Palo.ESPADAS: 0})
         
-    def test_mano_punct_method (self) :
+    def test_punct_method (self) :
         mano = Mano.from_str("12O,1B,2B,5C")
         punct = mano.punct()
         

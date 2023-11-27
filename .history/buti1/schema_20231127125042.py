@@ -11,7 +11,7 @@ class Carta (BaseModel) :
     
     def __str__(self) -> str:
         palo = {Palo.OROS: "O", Palo.BASTOS: "B", Palo.ESPADAS: "E", Palo.COPAS: "C"}[self.palo]
-        return f"{self.numero}{palo}"
+        return f"{self.numero} {palo}"
     
     @classmethod
     def from_str (cls, string: str) -> "Carta" :
@@ -20,7 +20,7 @@ class Carta (BaseModel) :
         if not result :
             raise ValueError("Invalid string: " + string)
         
-        return cls(
+        return Carta(
             palo={"O": Palo.OROS, "B": Palo.BASTOS, "E": Palo.ESPADAS, "C": Palo.COPAS}[result["palo"]],
             numero=int(result["numero"])
         )
@@ -35,13 +35,6 @@ class Carta (BaseModel) :
         
 class Mano (BaseModel) :
     cartas: conlist(Carta, min_length=1, max_length=12)
-    
-    @classmethod
-    def from_str (cls, string: str) -> "Mano" :
-        card_str_list = string.split(",")
-        cards = [ Carta.from_str(c) for c in card_str_list ]
-        
-        return cls(cartas=cards)
     
     def count (self) -> Dict[Palo, int] :
         count = dict()

@@ -37,11 +37,7 @@ class Mano (BaseModel) :
     cartas: conlist(Carta, min_length=1, max_length=12)
     
     @classmethod
-    def from_str (cls, string: str) -> "Mano" :
-        card_str_list = string.split(",")
-        cards = [ Carta.from_str(c) for c in card_str_list ]
-        
-        return cls(cartas=cards)
+    def from_str (cls)
     
     def count (self) -> Dict[Palo, int] :
         count = dict()
