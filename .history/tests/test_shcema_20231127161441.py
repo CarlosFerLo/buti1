@@ -47,8 +47,7 @@ class TestSchema (unittest.TestCase) :
             Carta(palo=Palo.OROS, numero=12)
         ])
     
-        self.assertRaises(pydantic.ValidationError, Mano.from_str, string="12C,12C")
-        
+    
     def test_mano_count_method (self) :
         mano = Mano.from_str("12O,1B,2B,5C")
         

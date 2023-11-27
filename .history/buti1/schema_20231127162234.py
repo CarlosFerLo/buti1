@@ -46,16 +46,11 @@ class Mano (BaseModel) :
     @field_validator("cartas")
     @classmethod
     def validate_cartas_does_not_contain_duplicates (cls, cartas: List[Carta]) :
-        new_cartas = []
         while len(cartas) > 0 :
             c = cartas.pop()
             
             if c in cartas :
                 raise ValueError("Carta aparece dos o mas veces en la misma mano. Carta: " + str(c))
-            
-            new_cartas.append(c)
-            
-        return new_cartas
     
     def count (self) -> Dict[Palo, int] :
         count = dict()
